@@ -1,162 +1,59 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-        <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
-<style type="text/css" media="screen">
-body{
-    margin: 0;
-    padding: 0;
-    background: #000;
-    background-size: cover;
-    background-position: center;
-    font-family: sans-serif;
-}
-.loginBox{
-    width: 320px;
-    height: 420px;
-    background: rgba(0, 0, 0, 0);
-    color: #ffffff;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    padding: 70px 70px;
-}
-h1{
-    margin: 0;
-    padding: 0 0 20px;
-    font-size: 22px;
-}
-
-.loginBox p{
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-}
-
-.loginBox input{
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.loginBox input[type="text"], input[type="password"]
-{
-    border: none;
-    border-bottom: 1px solid #fff;
-    background: transparent;
-    outline: none;
-    height: 40px;
-    color: #fff;
-    font-family: sans-serif;
-    font-size: 16px;
-
-}
-.loginBox input[type="button"]
-{
-    border: none;
-    outline: #fff;
-    height: 40px;
-    background: #fff;
-    font-family: sans-serif;
-    font-size: 18px;
-    border-radius: 20px;
-}
-.loginBox input[type="button"]:hover
-{
-    cursor: pointer;
-    background: #f3a022;
-    color: #000;
-
-}
-
-</style>
-</head>
-    <body>
-        <div class="loginBox"> 
-              <form name= "form1" action="afterSubmit.html" method="get" target="_blank">
-                    <p> First name </p>
-                    <input id="firstName" onclick="return IsEmpty();" type="text" name="first_name" placeholder="Enter first name">
-                    <p> Last name </p>
-                    <input id="lastName" type="text" name="last_name" placeholder="Enter last name">
-                    <p> Email </p>
-                    <input id="emailAcc" type="text" name="email" placeholder="Enter email address">
-                    <p> Username </p>
-                    <input id="user_name" type="text" name="username" placeholder="Enter Username">
-                    <p> Password </p>
-                    <input  id="pass_word" type="password" name="password" placeholder="Enter Password">
-                    <input  type="button" value="Create Account" onclick="save_user();"/>
-                    <a href="https://slack.com/oauth/authorize?scope=identity.basic,identity.email&client_id=463894577095.462236999537"><img alt="Sign in with Slack" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>
-                </form>
-        </div>
-
-        <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
-        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-
-<script>
-            // Initialize Firebase
-            var config = {
-              apiKey: "AIzaSyCpv6iBq0iM84EtpyjqBNwSCGLfL4AOfIs",
-              authDomain: "reservationsystem-3dd85.firebaseapp.com",
-              databaseURL: "https://reservationsystem-3dd85.firebaseio.com",
-              projectId: "reservationsystem-3dd85",
-              storageBucket: "reservationsystem-3dd85.appspot.com",
-              messagingSenderId: "385982147641"
-            };
-            firebase.initializeApp(config);
-          </script>
-<script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    function save_user(){
-
-        var first_name = $("#firstName").val();
-        var last_name = $("#lastName").val();
-        var email = $("#emailAcc").val();
-        var username = $("#user_name").val();
-        var password = $("#pass_word").val();
-
-        if (first_name == '' || last_name == '' || email == '' || username == '' || password == '' ) {
-                alert("Some Fields are Blank....!!");
-        } else {
-            noErrorSubmit();
-        }
-    }
-    function noErrorSubmit(){
-        var myFirebase = firebase.database().ref();
-					
-      var user = myFirebase.child("users");
-
-        var first_name = $("#firstName").val();
-        var last_name = $("#lastName").val();
-        var email = $("#emailAcc").val();
-        var username = $("#user_name").val();
-        var password = $("#pass_word").val();
-        user.push ({
-            "first name": first_name,
-            "last name": last_name,
-            "email": email,
-            "username": username,
-            "password": password
-            
-        });
-        setTimeout(function() { afterSubmit(); }, 500);
-    }  
-</script>
-
+   
+    
+</head>
+<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
 <script>
-        function IsEmpty(){
-          if(document.forms['form1'].first_name.value === "")
-          {
-          alert("empty");
-          return false;
-          }
-          return true;
-        }
 
-        function afterSubmit(){
-          window.location.href = "afterSubmit.html"
-        }
+    var config = {
+        apiKey: "AIzaSyCpv6iBq0iM84EtpyjqBNwSCGLfL4AOfIs",
+        authDomain: "reservationsystem-3dd85.firebaseapp.com",
+        databaseURL: "https://reservationsystem-3dd85.firebaseio.com",
+        projectId: "reservationsystem-3dd85",
+        storageBucket: "reservationsystem-3dd85.appspot.com",
+        messagingSenderId: "385982147641"
+      };
+      firebase.initializeApp(config);
+
 </script>
+
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.css" />
+    <script type="text/javascript">
+      // FirebaseUI config.
+      var uiConfig = {
+        signInSuccessUrl: 'main.html',
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+          firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        ],
+        // tosUrl and privacyPolicyUrl accept either url string or a callback
+        // function.
+        // Terms of service url/callback.
+        tosUrl: '<your-tos-url>',
+        // Privacy policy url/callback.
+        privacyPolicyUrl: function() {
+          window.location.assign('<your-privacy-policy-url>');
+        }
+      };
+
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
+
+</script>
+
+
+<body>
+     <h1>Welcome to My Awesome App</h1>
+     <div id="firebaseui-auth-container"></div>
 </body>
 </html>
