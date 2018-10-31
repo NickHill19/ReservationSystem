@@ -5,90 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="js/firebaseInit.js"></script>
+    <script src="js/main.js" defer></script>
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
-
-<script>
-
-        var config = {
-            apiKey: "AIzaSyCpv6iBq0iM84EtpyjqBNwSCGLfL4AOfIs",
-            authDomain: "reservationsystem-3dd85.firebaseapp.com",
-            databaseURL: "https://reservationsystem-3dd85.firebaseio.com",
-            projectId: "reservationsystem-3dd85",
-            storageBucket: "reservationsystem-3dd85.appspot.com",
-            messagingSenderId: "385982147641"
-          };
-          firebase.initializeApp(config);
-    
-</script>
-
-<script>
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          // User is signed in.
-          uid = user.uid;
-        }
-        else{
-            uid = null;
-            window.location.replace("index.html");
-        }
-      });
-</script>
-
-
-<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 
 <body>
-        <style type="text/css" media="screen">
-            .clickable{
-                cursor: pointer;
-                color: #f3a022;
-            }
-        </style>
+
     <h1> Welcome to the main page</h1>
 
-    <table style="width:100%" id="ex-table">    
-        <tr id="tr">
-            <tr class="clickable">
-                    <th>Available Mattresses</th>
-            </tr>
-    </table> 
+    <table style="width:100%" id="ex-table">
+        <tr>
+            <th>Available Mattresses</th>
+            <th>Room Number</th>
+        </tr>
 
-   
-
-
-<script>
-  var database = firebase.database().ref("mattresses").orderByChild("reserved").on('value', function (snapshot) {
-       
-	
-    snapshot.forEach(function(childSnapshot) {
-
-       var RoomNumber = childSnapshot.key;
-       var Reserved = childSnapshot.val().reserved;
-       if (Reserved == false){
-       content += '<tr>';
-        content += '<td>' + RoomNumber + '</td>'; //column1
-        // content += '<td>' + Reserved + '</td>';//column2
-        content += '</tr>';
-       }     
-    
-  });
-  $('#ex-table').append(content);
-
-});
-
-</script>
+    </table>
 
 <button id="signOut">Sign Out</button>
-<script>
-    document.getElementById('signOut').addEventListener('click', function(event) {
-    firebase.auth().signOut();
-});
-</script>
 
-
-
- 
 </body>
 </html>
